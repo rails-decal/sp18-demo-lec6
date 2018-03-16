@@ -1,0 +1,7 @@
+<div class="large-8 columns">
+    <h1> Users </h1>
+
+    <% @users.each do |u| %>
+        <h2><%= link_to u.first_name, user_path(u) %></h2>
+    <% end %>
+</div>

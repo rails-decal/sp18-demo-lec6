@@ -1,0 +1,40 @@
+// Place all the styles related to the Restaurants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.restaurants {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: center; 
+    width: 100%; 
+}
+.restaurant {
+    width: 50%;
+    border-radius: 3px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 4px 4px 15px 3px rgba(0, 0, 0, 0.03);
+    
+    a {
+        color: black;
+    }
+
+    background-color: white; 
+    transition: 200ms; 
+    &:hover {
+        background: linear-gradient(90deg, #f9684a, #f9453b);
+        transform: scale(1.05, 1.05);
+        transform-origin: center; 
+        a { 
+            color: white;
+        }
+    }
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+}

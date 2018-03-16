@@ -1,0 +1,8 @@
+<div class="large-8 columns">
+    <h1> <%= @user.first_name %>'s Reviews </h1>
+
+    <% @user.reviews.each do |r| %>
+        <b><%= r.created_at %> </b><%= r.content %> @ <%= link_to r.restaurant.name, restaurant_path(r.restaurant) %>
+        <br />
+    <% end %>
+</div>
