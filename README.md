@@ -14,7 +14,7 @@ In this lecture, we will be recreating Yelp, the popular restaurant reviews site
 Let's get started!
 
 ## Getting Started
-Create your application by running `rails new yelp` in the directory of your choice and `cd yelp`. You will not need to run `bundle install` because making a new app will automatically do this for you.
+Create your application by running `rails new welp` in the directory of your choice and `cd welp`. You will not need to run `bundle install` because making a new app will automatically do this for you.
 
 Verify you've set things up correctly by starting up the `rails server`.
 
