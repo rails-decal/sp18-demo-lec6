@@ -112,29 +112,30 @@ This is really similar to the what we just did but for users. Try this out on yo
 
 Lastly, we should have a form under each restaurant page so a user can post a review for it.
 
-**ReviewsController**
-First, generate `ReviewsController` with a `create` method that will take the form data we pass in to create a new review for that restaurant.
+**Restaurants Controller**
 
-Let's try defining the private `review_params` method so we can mass update `content` and `rating` when we recieve it from the form. Remember in your `create` method to also set the review's restaurant to what is given by `Restaurant.find(params[:id])` and the review's user to `current_user`. `current_user` is a convience variable given to us by devise to get the currently logged in user. For now, we won't worry about what happens when a user is not logged in, this will be left as an extra exercise.
+First, generate define a `create_review`  method that will take the form data we pass in to create a new review for that restaurant.
+
+Let's try defining the private `review_params` method so we can mass update `content` and `rating` when we receive it from the form. Remember in your `create` method to also set the review's restaurant to what is given by `Restaurant.find(params[:id])` and the review's user to `current_user`. `current_user` is a convenience variable given to us by devise to get the currently logged in user. For now, we won't worry about what happens when a user is not logged in, this will be left as an extra exercise.
 
 Save the review object you just created and `redirect_to` the restaurant page at the end of this method.
 
 **Route**
 
-Let's create a `POST` route for the form to visit when it is submitted. We will want the route to be for `restaurants/:id` and this should go to `reviews#create`. This allows us to have the restaurant id when we get `params[:id]` so we can set the review's restaurant to be the id of the restaurant's page we are on.
+Let's create a `POST` route for the form to visit when it is submitted. We will want the route to be for `restaurants/:id` and this should go to `restaurants#create_review`. This allows us to have the restaurant id when we get `params[:id]` so we can set the review's restaurant to be the id of the restaurant's page we are on. Remember to give this route a name such as `create_review_path`
 
 **form_for**
 
 Finally, in the show page for each restaurant, we will want to add a form at the end to create a new review.
 
-We can use `form_for` to help us. This will require us to also declare a variable `@review = Review.new` in `restaurants#show`
+We can use `form_for` to help us.
 
 Then, we can add the form as follows in *views/restaurants/show.html.erb*:
 
 ```
 <h2> Post a Review </h2>
 
-<%= form_for @review, url: restaurant_path(@restaurant) do |f| %>
+<%= form_for Review.new, url: create_review_path(@restaurant) do |f| %>
 	Content: <%= f.text_area :content %>
 	<br />
 	Rating: <%= f.number_field :rating %>
@@ -142,7 +143,6 @@ Then, we can add the form as follows in *views/restaurants/show.html.erb*:
 	<%= f.submit %>
 <% end %>
 ```
-Notice how we explicitly specify that the url this form should POST to once it is submitted is `restaurant_path(@restaurant)` because of how our route was set up in the section above.
 
 ## Fin
 Yay! You have reached the end of this demo walkthrough :) I hope this gives you a better sense of how all the pieces we've discussed in lecture come together. You can now apply many of the methods we used to start building your own applications!
